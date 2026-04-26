@@ -69,7 +69,7 @@ def test_binary_check(binary_data, metric):
     # In never versions of scipy sokalmichener was deprecated for rogerstanimoto
     # They should be the same in scipy's implementation
     if metric == 'sokalmichener':
-        dist_matrix = pairwise_distances(binary_data, metric=rogerstanimoto)
+        dist_matrix = pairwise_distances(binary_data, metric='rogerstanimoto')
     else:
         dist_matrix = pairwise_distances(binary_data, metric=metric)
     if metric in ("jaccard", "dice", "sokalsneath", "yule"):
