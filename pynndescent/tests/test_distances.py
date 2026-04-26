@@ -68,7 +68,7 @@ def test_spatial_check(spatial_data, metric):
 def test_binary_check(binary_data, metric):
     # In never versions of scipy sokalmichener was deprecated for rogerstanimoto
     # They should be the same in scipy's implementation
-    if metric == 'sokalmichener'
+    if metric == 'sokalmichener':
         dist_matrix = pairwise_distances(binary_data, metric=rogerstanimoto)
     else:
         dist_matrix = pairwise_distances(binary_data, metric=metric)
