@@ -85,9 +85,7 @@ stages:
 
         - script: |
             python -m pip install -U uv
-            uv sync
-            uv pip install pytest pytest-azurepipelines
-            uv pip install pytest-cov
+            uv sync --group cicd
           displayName: 'Install package and dependencies'
           condition: ${{ eq(parameters.includeReleaseCandidates, false) }}
 
@@ -149,9 +147,9 @@ stages:
           inputs:
             secureFile: 'pypirc'  
 
-        # - script: |
-        #     uvx twine check dist/*
-        #     uvx twine upload --repository pypi --config-file $(PYPIRC_CONFIG.secureFilePath) dist/*
-        #   displayName: 'Upload to PyPI'
-        #   condition: and(succeeded(), eq(variables['Build.SourceBranchName'], variables['packageVersionFormatted']))
+        - script: |
+            uvx twine check dist/*
+            uvx twine upload --repository testpypi --config-file $(PYPIRC_CONFIG.secureFilePath) dist/*
+          displayName: 'Upload to PyPI'
+          condition: and(succeeded(), eq(variables['Build.SourceBranchName'], variables['packageVersionFormatted']))
 
