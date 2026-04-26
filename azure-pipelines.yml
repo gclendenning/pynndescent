@@ -85,7 +85,7 @@ stages:
 
         - script: |
             python -m pip install -U uv
-            uv sync --python "$(python -c 'import sys; print(sys.executable)')"
+            uv sync
             uv pip install pytest pytest-azurepipelines
             uv pip install pytest-cov
           displayName: 'Install package and dependencies'
